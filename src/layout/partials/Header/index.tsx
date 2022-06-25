@@ -35,7 +35,6 @@ const Header: React.FC<Props> = ({
             data-tip={`We're testing a new feature. \n Would you like to see notifications here? \nJust click and help us!`}
             size="2rem"
           />
-          {/* <ReactTooltip place="bottom" multiline={true} type="dark" effect="float" /> */}
           <div className="badge">6</div>
         </div>
         {showSearchBar && <Search className="search" text="Searching for..." />}

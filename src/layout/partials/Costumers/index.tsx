@@ -7,15 +7,13 @@ import { CostumersContext } from '../../../state/contexts/CostumersContext';
 import { useConnection } from '../../../state/hooks/useConnection';
 
 interface Props {
-  costumer: Costumer;
   searched: string;
-  costumersText?: string;
 }
 
 const Costumers: React.FC<Props> = ({ searched }) => {
   const connection = useConnection();
   const [costumersToDisplay, setCostumersToDisplay] = useState(
-    [] as Costumer[],
+    [] as Array<Costumer>,
   );
 
   const { getCostumersByName } = useContext(CostumersContext);

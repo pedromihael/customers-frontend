@@ -12,19 +12,15 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { MUISwitch } from '../Switch';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Search, SearchIconWrapper, StyledInputBase } from './style';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: '#1976d2',
-    },
-  },
-});
+import { useABTest } from '../../../state/hooks/useABTest';
+import { CostumersContext } from '../../../state/contexts/CostumersContext';
 
 export function SearchAppBar() {
+  const handleClick = useABTest();
+  const costumersContext = React.useContext(CostumersContext);
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+
   const [
     mobileMoreAnchorEl,
     setMobileMoreAnchorEl,
@@ -40,7 +36,14 @@ export function SearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const handleSearch = React.useCallback(
+    e => {
+      e.preventDefault();
+      costumersContext.setSearched(e.target.value);
+    },
+    [costumersContext],
+  );
+
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -58,8 +61,8 @@ export function SearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+        <IconButton size="large" aria-label="show 8 new mails" color="inherit">
+          <Badge badgeContent={8} color="error">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -68,10 +71,10 @@ export function SearchAppBar() {
       <MenuItem>
         <IconButton
           size="large"
-          aria-label="show 17 new notifications"
+          aria-label="show 11 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
+          <Badge badgeContent={11} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -97,6 +100,7 @@ export function SearchAppBar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
+              onChange={handleSearch}
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
             />
@@ -107,20 +111,28 @@ export function SearchAppBar() {
           >
             <MUISwitch />
             <IconButton
+              data-tip={`We're testing a new feature. \n Would you like to see notifications here? \nJust click and help us!`}
+              onClick={() =>
+                handleClick('messages', window.navigator.userAgent)
+              }
               size="large"
-              aria-label="show 4 new mails"
+              aria-label="show 8 new mails"
               color="inherit"
             >
-              <Badge badgeContent={4} color="error">
+              <Badge badgeContent={8} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>
             <IconButton
+              data-tip={`We're testing a new feature. \n Would you like to see notifications here? \nJust click and help us!`}
+              onClick={() =>
+                handleClick('notifications', window.navigator.userAgent)
+              }
               size="large"
-              aria-label="show 17 new notifications"
+              aria-label="show 11 new notifications"
               color="inherit"
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={11} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
