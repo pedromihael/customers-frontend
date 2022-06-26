@@ -8,7 +8,6 @@
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.5",
-    "@types/prop-types": "^15.7.3",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-cache-persist": "^0.1.1",
     "awesome-typescript-loader": "^5.2.1",
@@ -21,6 +20,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-draggable": "^4.4.5",
     "react-icons": "^4.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "2.1.8",
@@ -52,7 +52,8 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.11",
-    "@types/node": "11.11.7",
+    "@types/node": "^18.0.0",
+    "@types/prop-types": "^15.7.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "16.8.3",
     "@types/react-router-dom": "^5.1.7",
@@ -67,6 +68,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4",
-    "ts-loader": "^8.0.14"
+    "ts-loader": "^8.0.14",
+    "webpack-cli": "^4.10.0"
   }
 }

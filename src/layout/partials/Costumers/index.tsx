@@ -4,19 +4,21 @@ import { Container } from './styles';
 
 import { Costumer } from '../../../modules/types/Costumer';
 import { CostumersContext } from '../../../state/contexts/CostumersContext';
-import { useConnection } from '../../../state/hooks/useConnection';
 
 interface Props {
   searched: string;
 }
 
 const Costumers: React.FC<Props> = ({ searched }) => {
-  const connection = useConnection();
   const [costumersToDisplay, setCostumersToDisplay] = useState(
     [] as Array<Costumer>,
   );
 
-  const { getCostumersByName } = useContext(CostumersContext);
+  const {
+    getCostumersByName,
+    getAllCostumers,
+    setCostumersToDisplay: setContextCostumers,
+  } = useContext(CostumersContext);
 
   useEffect(() => {
     const found = getCostumersByName(searched);
@@ -25,8 +27,9 @@ const Costumers: React.FC<Props> = ({ searched }) => {
 
   useEffect(() => {
     (async () => {
-      const res = await connection.get('/list-costumers');
-      setCostumersToDisplay(res.data.response);
+      const res = await getAllCostumers();
+      setCostumersToDisplay(res);
+      setContextCostumers(res);
     })();
   }, []);
 

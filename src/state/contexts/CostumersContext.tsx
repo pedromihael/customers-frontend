@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useState } from 'react';
 
 import { Costumer } from '../../modules/types/Costumer';
 import { useConnection } from '../hooks/useConnection';
@@ -15,9 +15,11 @@ interface IContextProps {
   searchedCostumer: string;
   setSearched: (name: string) => void;
   getCostumerById: (id: string) => Costumer;
+  setCostumersToDisplay: (costumers: Array<Costumer>) => void;
 }
 
 export const CostumersContext = createContext({} as IContextProps);
+let allUsers: Array<Costumer | any> = [];
 
 const CostumerProvider: React.FC<Props> = ({ children }) => {
   const connection = useConnection();
@@ -26,13 +28,6 @@ const CostumerProvider: React.FC<Props> = ({ children }) => {
   >([]);
   const [searchedCostumer, setsearchedCostumer] = useState('');
 
-  useEffect(() => {
-    (async () => {
-      const costumers = await connection.get('/list-costumers');
-      setCostumersToDisplay(costumers.data.response);
-    })();
-  }, [costumersToDisplay]);
-
   const fetchUsers = (): AxiosPromise<any> => {
     return connection.get('/list-costumers');
   };
@@ -40,7 +35,8 @@ const CostumerProvider: React.FC<Props> = ({ children }) => {
   const getAllCostumers = async (): Promise<Array<Costumer>> => {
     const costumers = await fetchUsers();
     setCostumersToDisplay(costumers.data.response);
-    return costumers.data.response as Costumer[];
+    allUsers = costumers.data.response;
+    return costumers.data.response as Array<Costumer>;
   };
 
   const getCostumersByName = (userName: string) => {
@@ -51,7 +47,7 @@ const CostumerProvider: React.FC<Props> = ({ children }) => {
       considerableSubstringLength,
     );
 
-    let found = costumersToDisplay.filter(user =>
+    let found = allUsers.filter(user =>
       new RegExp(`${considerableSubstring}`, 'gi').test(user.name),
     ) as Array<Costumer>;
 
@@ -80,6 +76,7 @@ const CostumerProvider: React.FC<Props> = ({ children }) => {
         searchedCostumer,
         setSearched,
         getCostumerById,
+        setCostumersToDisplay,
       }}
     >
       {children}

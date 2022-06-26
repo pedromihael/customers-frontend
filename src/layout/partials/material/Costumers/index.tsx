@@ -1,5 +1,4 @@
 import React from 'react';
-import { useConnection } from '../../../../state/hooks/useConnection';
 import { CostumersContext } from '../../../../state/contexts/CostumersContext';
 import { Grid } from '@mui/material';
 import { CostumerCard } from '../../../../modules/mui_components/Card';
@@ -10,8 +9,12 @@ interface Props {
 }
 
 export const Costumers: React.FC<Props> = ({ searched }) => {
-  const connection = useConnection();
-  const { getCostumersByName } = React.useContext(CostumersContext);
+  const {
+    getCostumersByName,
+    getAllCostumers,
+    setCostumersToDisplay: setContextCostumers,
+    costumersToDisplay: contextCostumers,
+  } = React.useContext(CostumersContext);
   const [costumersToDisplay, setCostumersToDisplay] = React.useState(
     [] as Array<Costumer>,
   );
@@ -23,10 +26,15 @@ export const Costumers: React.FC<Props> = ({ searched }) => {
 
   React.useEffect(() => {
     (async () => {
-      const res = await connection.get('/list-costumers');
-      setCostumersToDisplay(res.data.response);
+      const res = await getAllCostumers();
+      setCostumersToDisplay(res);
+      setContextCostumers(res);
     })();
   }, []);
+
+  React.useEffect(() => {
+    setCostumersToDisplay(contextCostumers);
+  }, [contextCostumers]);
 
   return (
     <Grid
@@ -48,7 +56,7 @@ export const Costumers: React.FC<Props> = ({ searched }) => {
           }}
           key={index}
         >
-          <CostumerCard costumer={costumer} />
+          <CostumerCard costumer={costumer} key={index} />
         </Grid>
       ))}
     </Grid>

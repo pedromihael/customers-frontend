@@ -4,6 +4,8 @@ import { SearchAppBar } from '../../../../modules/mui_components/Header';
 import { Costumers } from '../../../../layout/partials/material/Costumers';
 import { SimplePaper } from '../../../../modules/mui_components/Paper';
 import { CostumersContext } from '../../../../state/contexts/CostumersContext';
+import { ActionsContext } from '../../../../state/contexts/ActionsContext';
+import { CustomizedSnackbar } from '../../../../modules/mui_components/Snackbar';
 
 export const Home = () => {
   const sx = {
@@ -14,13 +16,19 @@ export const Home = () => {
   };
 
   const { searchedCostumer } = React.useContext(CostumersContext);
+  const { snackbarConfig, open } = React.useContext(ActionsContext);
 
   return (
-    <SimplePaper sx={sx}>
-      <SearchAppBar />
-      <Box sx={{ padding: '4rem' }}>
-        <Costumers searched={searchedCostumer} />
-      </Box>
-    </SimplePaper>
+    <>
+      <CustomizedSnackbar severity={snackbarConfig.severity} open={open}>
+        {snackbarConfig.text}
+      </CustomizedSnackbar>
+      <SimplePaper sx={sx}>
+        <SearchAppBar />
+        <Box sx={{ padding: '4rem' }}>
+          <Costumers searched={searchedCostumer} />
+        </Box>
+      </SimplePaper>
+    </>
   );
 };

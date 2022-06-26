@@ -34,7 +34,7 @@ const CostumerPage: React.FC<Props> = ({ handleThemeSwitching }) => {
   return (
     <Container>
       <Header
-        text="MySocial"
+        text="Costumers"
         toggleTheme={handleThemeSwitching}
         showSearchBar={false}
       />
