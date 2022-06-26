@@ -34,7 +34,7 @@ export const CostumerCard: React.FC<Props> = ({ costumer }) => {
 
   return (
     <>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card sx={{ width: 345 }}>
         <CardMedia
           component="img"
           height="140"

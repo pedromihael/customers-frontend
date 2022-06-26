@@ -34,8 +34,9 @@ const CostumerProvider: React.FC<Props> = ({ children }) => {
 
   const getAllCostumers = async (): Promise<Array<Costumer>> => {
     const costumers = await fetchUsers();
-    setCostumersToDisplay(costumers.data.response);
-    allUsers = costumers.data.response;
+    const revertedList = costumers.data.response.reverse();
+    setCostumersToDisplay(revertedList);
+    allUsers = revertedList;
     return costumers.data.response as Array<Costumer>;
   };
 

@@ -9,7 +9,7 @@ interface Props {
   name: string;
   age: number;
   company: string;
-  phone: string;
+  phone?: string;
   picture: string;
 }
 
