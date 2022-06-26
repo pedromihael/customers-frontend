@@ -5,7 +5,7 @@ dotenv.config();
 
 export const useConnection = (): AxiosInstance => {
   const connection = axios.create({
-    baseURL: 'http://lvh.me:3013',
+    baseURL: process.env.API_URL,
   });
 
   return connection;

@@ -14,8 +14,6 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${(props: { theme: { colors: { background: any; }; }; }) => props.theme.colors.background};
-    color: ${(props: { theme: { colors: { color: any; }; }; }) => props.theme.colors.color};
     font-family: 'Oxygen', sans-serif;
     font-size: 21px;
     font-weight: 300;
