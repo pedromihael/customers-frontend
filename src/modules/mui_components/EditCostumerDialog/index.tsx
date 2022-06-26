@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useContext } from 'react';
+import React, { useCallback, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -6,8 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Paper, { PaperProps } from '@mui/material/Paper';
-import Draggable from 'react-draggable';
+import { DraggablePaper } from '../DraggablePaper';
 import { Costumer } from '../../types/Costumer';
 import { useConnection } from '../../../state/hooks/useConnection';
 import { ActionsContext } from '../../../state/contexts/ActionsContext';
@@ -19,18 +18,11 @@ interface Props {
   costumer: Costumer;
 }
 
-const PaperComponent = (props: PaperProps) => {
-  return (
-    <Draggable
-      handle="#draggable-dialog-title"
-      cancel={'[class*="MuiDialogContent-root"]'}
-    >
-      <Paper {...props} />
-    </Draggable>
-  );
-};
-
-const FormDialog: React.FC<Props> = ({ handleClose, open, costumer }) => {
+const EditCostumerDialog: React.FC<Props> = ({
+  handleClose,
+  open,
+  costumer,
+}) => {
   const [payload, setPayload] = useState({});
 
   const connection = useConnection();
@@ -78,7 +70,7 @@ const FormDialog: React.FC<Props> = ({ handleClose, open, costumer }) => {
       <Dialog
         open={open}
         onClose={handleClose}
-        PaperComponent={PaperComponent}
+        PaperComponent={DraggablePaper}
         aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
@@ -147,4 +139,4 @@ const FormDialog: React.FC<Props> = ({ handleClose, open, costumer }) => {
   );
 };
 
-export default React.memo(FormDialog);
+export default React.memo(EditCostumerDialog);

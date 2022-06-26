@@ -6,20 +6,30 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Costumer } from '../../types/Costumer';
-import FormDialog from '../Dialog';
+import EditCostumerDialog from '../EditCostumerDialog';
+import DeleteCostumerDialog from '../DeleteCostumerDialog';
 interface Props {
   costumer: Costumer;
 }
 
 export const CostumerCard: React.FC<Props> = ({ costumer }) => {
-  const [open, setOpen] = React.useState(false);
+  const [editDialogOpen, setEditDialogOpen] = React.useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
 
-  const handleOpen = React.useCallback(() => {
-    setOpen(true);
+  const handleEditOpen = React.useCallback(() => {
+    setEditDialogOpen(true);
   }, []);
 
-  const handleClose = React.useCallback(() => {
-    setOpen(false);
+  const handleEditClose = React.useCallback(() => {
+    setEditDialogOpen(false);
+  }, []);
+
+  const handleDeleteOpen = React.useCallback(() => {
+    setDeleteDialogOpen(true);
+  }, []);
+
+  const handleDeleteClose = React.useCallback(() => {
+    setDeleteDialogOpen(false);
   }, []);
 
   return (
@@ -44,14 +54,27 @@ export const CostumerCard: React.FC<Props> = ({ costumer }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={handleOpen}>
+          <Button size="small" onClick={handleEditOpen}>
             Edit
           </Button>
-          <Button size="small">Delete</Button>
+          <Button size="small" onClick={handleDeleteOpen}>
+            Delete
+          </Button>
         </CardActions>
       </Card>
-      {open && (
-        <FormDialog open={open} handleClose={handleClose} costumer={costumer} />
+      {editDialogOpen && (
+        <EditCostumerDialog
+          open={editDialogOpen}
+          handleClose={handleEditClose}
+          costumer={costumer}
+        />
+      )}
+      {deleteDialogOpen && (
+        <DeleteCostumerDialog
+          open={deleteDialogOpen}
+          handleClose={handleDeleteClose}
+          costumer={costumer}
+        />
       )}
     </>
   );
