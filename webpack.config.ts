@@ -23,6 +23,7 @@ const config: Configuration = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    fallback: { path: require.resolve('path-browserify') },
   },
   output: {
     path: path.resolve(__dirname, 'build'),

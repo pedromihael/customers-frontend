@@ -9,8 +9,8 @@
     "@mui/material": "^5.8.5",
     "awesome-typescript-loader": "^5.2.1",
     "axios": "^0.27.2",
-    "dotenv": "^8.2.0",
     "eslint": "5.12.0",
+    "path": "^0.12.7",
     "path-browserify": "^1.0.1",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
@@ -18,7 +18,7 @@
     "react-draggable": "^4.4.5",
     "react-icons": "^4.1.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^5.0.1",
     "react-switch": "^6.0.0",
     "react-tooltip": "^4.2.13",
     "styled-components": "^5.2.1",
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "webpack --mode production",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -41,6 +41,11 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
   "resolutions": {
     "@types/react": "17",
     "@types/react-dom": "16.0.11"
@@ -65,14 +70,15 @@
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
     "@typescript-eslint/parser": "^1.5.0",
-    "babel-loader": "^8.2.5",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.1.0",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-import-resolver-typescript": "^1.1.1",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^4.7.0-next-955cad9bc-20220623",
     "fork-ts-checker-webpack-plugin": "^7.2.11",
     "prettier": "^1.16.4",
     "ts-loader": "^8.0.14",
