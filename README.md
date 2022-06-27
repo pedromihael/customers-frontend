@@ -63,7 +63,7 @@ $ yarn start
 
 ## Demo
 
-A API está implantada [aqui](https://costumers-frontend.herokuapp.com/). O ambiente de deploy escolhido foi o Heroku pela facilidade, mas existe um trade-off. A partir de 30min de inatividade do dyno, o mesmo entra em idle, causando um first hit demorado.
+A aplicação está implantada [aqui](https://costumers-frontend.herokuapp.com/). O ambiente de deploy escolhido foi o Heroku pela facilidade, mas existe um trade-off. A partir de 30min de inatividade do dyno, o mesmo entra em idle, causando um first hit demorado.
 
 ## Dúvidas
 
