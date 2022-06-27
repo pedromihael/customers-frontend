@@ -37,7 +37,7 @@ export function SearchAppBar() {
   };
 
   const handleSearch = React.useCallback(
-    e => {
+    (e: { preventDefault: () => void; target: { value: string } }) => {
       e.preventDefault();
       costumersContext.setSearched(e.target.value);
     },
@@ -105,11 +105,13 @@ export function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
+          <MUISwitch sx={{ m: 1, display: { md: 'none', lg: 'none' } }} />
+
           <Box sx={{ flexGrow: 1 }} />
           <Box
             sx={{ display: { xs: 'none', md: 'flex', alignItems: 'center' } }}
           >
-            <MUISwitch />
+            <MUISwitch sx={{ m: 1 }} />
             <IconButton
               data-tip={`We're testing a new feature. \n Would you like to see notifications here? \nJust click and help us!`}
               onClick={() =>
