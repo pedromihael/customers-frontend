@@ -1,11 +1,11 @@
-# Costumers Frontend 👽
+# Customers Frontend 👽
 
 Frontend responsivo desenvolvido para o teste de desenvolvedor da Pagaleve.
 
 A partir dessa UI, você pode:
 
-- [x] Listar todos os costumers.
-- [x] Pesquisar por costumers.
+- [x] Listar todos os customers.
+- [x] Pesquisar por customers.
 - [x] Trocar entre tema escuro e tema claro.
 - [x] Criar um costumer.
 - [x] Editar um costumer.
@@ -63,7 +63,7 @@ $ yarn start
 
 ## Demo
 
-A aplicação está implantada [aqui](https://costumers-frontend.herokuapp.com/). O ambiente de deploy escolhido foi o Heroku pela facilidade, mas existe um trade-off. A partir de 30min de inatividade do dyno, o mesmo entra em idle, causando um first hit demorado.
+A aplicação está implantada [aqui](https://customers-frontend.herokuapp.com/). O ambiente de deploy escolhido foi o Heroku pela facilidade, mas existe um trade-off. A partir de 30min de inatividade do dyno, o mesmo entra em idle, causando um first hit demorado.
 
 ## Dúvidas
 
